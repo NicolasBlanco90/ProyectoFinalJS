@@ -1,9 +1,9 @@
-
+//TRAER CATALOGO DE PRODUCTOS DE ARCHIVO JSON
 fetch('/catalogo.json')
 async function fun() {
     return fetch('/json/catalogo.json').then(res => res.json());
-  }
-const productos  = await fun();
+}
+const productos = await fun();
 console.log(productos)
 
 //HTML DE LOS PRODUCTOS DEL CATALAGO 
@@ -48,7 +48,6 @@ const productoCarritoHTML = (producto) => {
 //VARIABLES CARRITO DE COMPRAS
 let contadorCarrito = 0;
 const carrito = [];
-let cantidadCarrito = 0;
 
 
 // MOSTRAR HTML CATALOGO 
@@ -63,7 +62,6 @@ const mostrarCatalogo = () => {
 };
 
 // AGREGAR ELEMETOS DEL CATALAGO AL CARRITO Y AGREGARLOS A LOCAL STORAGE
-// 
 const botonesCatalogo = () => {
     for (const producto of productos) {
         const bontonId = `boton-catalogo-${producto.id}`;
@@ -72,26 +70,17 @@ const botonesCatalogo = () => {
         botonNodo.addEventListener("click", () => {
             const productoCarrito = {
                 imagen: producto.imagen,
-                nombre: producto.nombre, 
+                nombre: producto.nombre,
                 precio: producto.precio,
                 idCompra: contadorCarrito,
-                //cantidad: cantidadCarrito,
             };
             contadorCarrito += 1;
             carrito.push(productoCarrito);
-            /*carrito.forEach(object => {
-                if (object.nombre == productoCarrito.nombre) {
-                    object.cantidad++;
-                    object.precio = productoCarrito.precio * object.cantidad;
-                };
-            });*/
-            
             localStorage.setItem("carrito", JSON.stringify(carrito));
             mostrarCarrito();
         })
     }
 };
-
 
 //MOSTRAR ELEMENTOS SELECCIONADOS DEL CATALAGO EN EL CARRITO
 const mostrarCarrito = () => {

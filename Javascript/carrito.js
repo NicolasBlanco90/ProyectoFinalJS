@@ -1,13 +1,10 @@
-// VARIABLES A TENER EN CUENTA
-// SE APLICA OPERADOR TERNARIO / OR
-//USO DE LIBRERIA
-
-const alertaCarrito = () => { 
+//ALERTA SI EL CARRO ESTA VACIO
+const alertaCarrito = () => {
     Swal.fire({
-    icon: 'info',
-    title: 'Oops...',
-    text: 'El Carrito esta vacio!',
-  })
+        icon: 'info',
+        title: 'Oops...',
+        text: 'El Carrito esta vacio!',
+    })
 };
 
 const carritoFinal = JSON.parse(localStorage.getItem('carrito')) || [];
@@ -69,7 +66,7 @@ finalizar.addEventListener("click", () => {
     for (const producto of carritoFinal) {
         precio += producto.precio;
     }
-    
+
     const carritoNodo = document.getElementById("carrito");
     carritoNodo.innerHTML = `
     <div class="form-group"> 
@@ -77,9 +74,9 @@ finalizar.addEventListener("click", () => {
         <label class="control-label">Como desea Abonar? Seleccione la opcion que desee:</label>
         <select class="form-control" id="state_id">
             <option value="ef">Pago Efectivo cuando recibo los productos Total $${precio} </option>
-            <option value="3c">3 cuotas s/interes de $${precio/3}</option>
-            <option value="6c">6 cuotas de $${precio *0.5}</option>
-            <option value="12c">12 cuotas s/interes de $${precio/12}</option>
+            <option value="3c">3 cuotas s/interes de $${precio / 3}</option>
+            <option value="6c">6 cuotas de $${precio /5}</option>
+            <option value="12c">12 cuotas s/interes de $${precio / 12}</option>
         </select>
         <a class="btn-1 btn-comprar" href="https://www.mercadopago.com.ar"> PAGAR</a>
         <a class="btn-1 btn-comprar" href="./productos.html"> Volver a productos</a>                    
@@ -87,7 +84,7 @@ finalizar.addEventListener("click", () => {
     `
     const precioNodo = document.getElementById("precioTotal");
     precioNodo.innerHTML = ``;
-    
+
     const finalizarNodo = document.getElementById("finalizar");
     finalizarNodo.innerHTML = `
     

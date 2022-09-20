@@ -5,7 +5,7 @@ miFormulario.addEventListener("submit", validarFormulario);
 function validarFormulario(e) {
     e.preventDefault();
 }
-
+//PARAMETROS DEL FORMULARIO
 let Nombres = [];
 let Apellidos = [];
 let Usuarios = [];
@@ -18,11 +18,12 @@ let Provincias = [];
 let Ciudades = [];
 let CodigoPostales = [];
 
+//IDENTIFICACION DE ELEMENTOS USANDO QUERYSELECTOR
 let elementoBotonRegistrar = document.querySelector('#iRegistrar');
 
 elementoBotonRegistrar.addEventListener('click', registrarUsuario);
 
-
+//FUNCION PARA REGISTRAR EL USUARIO
 function registrarUsuario() {
 
     let iNombre = document.querySelector('#iNombre').value;
@@ -66,7 +67,7 @@ function registrarUsuario() {
     } else { alertaUsuario(); }
 }
 
-
+//HTML PARA MOSTRAR LOS DATOS REGISTRADOS
 const mostrarUsuario = () => {
     const usuarioNodo = document.getElementById("formulario");
     let usuarioHTML = `
@@ -94,6 +95,7 @@ const mostrarUsuario = () => {
 
 };
 
+//NAV MODIFICADO CON EL NOMBRE DE USUARIO Y OPCION CERRAR SESION
 const navUsuario = () => {
     const navNodo = document.getElementById("nav");
     let navHTML = `
@@ -106,26 +108,28 @@ const navUsuario = () => {
             <a class="nav-link" href="../pages/registro.html"><strong>${JSON.parse(localStorage.getItem("Usuario"))}<strong></a>
             <a class="nav-link" id="cerrarSesion"><strong>Cerrar Sesion<strong></a>
         </div>`
-    ;
+        ;
     navNodo.innerHTML = navHTML;
 
-}
-
-const alertaUsuario = () => { 
-    Swal.fire({
-    icon: 'warning',
-    title: 'Revisa tus datos!',
-    text: 'El Correo y la contraseña deben ser iguales',
-  })
 };
 
-const alertaSesion = () => { 
+//ALERTA COINCIDENCIA DE DATOS
+const alertaUsuario = () => {
     Swal.fire({
-    icon: 'success',
-    title: 'Cerraste tu sesion con exito',
-    text: 'Hasta la proxima!',
+        icon: 'warning',
+        title: 'Revisa tus datos!',
+        text: 'El Correo y la contraseña deben ser iguales',
+    })
+};
 
-  })
+//ALERTA DE FIN DE SESION
+const alertaSesion = () => {
+    Swal.fire({
+        icon: 'success',
+        title: 'Cerraste tu sesion con exito',
+        text: 'Hasta la proxima!',
+
+    })
 };
 
 
@@ -134,14 +138,15 @@ const usuarioParse = JSON.parse(localStorage.getItem("Usuario"));
 if (usuarioParse != null) {
     navUsuario();
     mostrarUsuario();
- }
+};
 
- const botonCerrar = document.getElementById("cerrarSesion");
+// CERRAR SESION Y REDIRECCION EN TIEMPO ESTABLECIDO
+const botonCerrar = document.getElementById("cerrarSesion");
 
- botonCerrar.addEventListener("click", () => {
-     localStorage.clear();
-     alertaSesion();
-     setTimeout(function(){
-         location.href='productos.html';
-     },1000 * 3);
- });
+botonCerrar.addEventListener("click", () => {
+    localStorage.clear();
+    alertaSesion();
+    setTimeout(function () {
+        location.href = 'productos.html';
+    }, 1000 * 3);
+});
